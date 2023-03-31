@@ -3,6 +3,7 @@ from rest_framework import serializers
 
 
 class MentorUserSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(read_only=True)
     class Meta:
         model = MentorUser
         fields = '__all__'
@@ -11,5 +12,6 @@ class MentorUserSerializer(serializers.ModelSerializer):
         password = validated_data.pop('password')
         user = self.Meta.model(**validated_data)
         user.set_password(password)
+        user.username = validated_data.get('email')
         user.save()
         return user

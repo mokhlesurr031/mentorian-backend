@@ -17,6 +17,7 @@ def user_list(request):
     
     elif request.method == 'POST':
         data = JSONParser().parse(request)
+        data['username'] = data.get('email')
         serializer = MentorUserSerializer(data=data)
         if serializer.is_valid():
             serializer.save()

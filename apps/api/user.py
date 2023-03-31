@@ -15,3 +15,8 @@ class MentorUserSerializer(serializers.ModelSerializer):
         user.username = validated_data.get('email')
         user.save()
         return user
+    
+
+
+
+        
